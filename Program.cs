@@ -80,8 +80,16 @@ namespace GreatestCommonDivisor
             //List<int> divisor1 = FindDivisors(number1);
             //List<int> divisor2 = FindDivisors(number2);
 
-            //List<int> factors = new List<int>();
-            //for (int )
+            //List<int> divisors = new List<int>();
+            //for (int i = 1; i <= number; i++)
+            //{
+            //    if (number % i == 0)
+            //    {
+            //        divisors.Add(i);
+            //    }
+            //}
+            //return divisors;
+
 
 
             // Output divisors

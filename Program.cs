@@ -1,69 +1,68 @@
-﻿using System;
-namespace Factorial
+﻿
+namespace FloodFillVisual
 {
-
-
-    class Program
+    internal class Program
     {
-        // Initialize step counter
-        static int stepCounter = 0;
-
-        // This program calculates the factorial of a non-negative integer using recursion.
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a integer to calculate its factorial:");
-            int number = int.Parse(Console.ReadLine());
-            stepCounter = 0;
-            // Validate input needs to be a non-negative integer
-            if (number < 0)
+            ShowBoard();
+        }
+
+
+        private static void ShowBoard()
+        {
+            Board board = new Board(20);
+            PrintBoard(board);
+
+            Console.WriteLine("What row would you like to start with?");
+            int startRow = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("What column would you like to start with?");
+            int startCol = int.Parse(Console.ReadLine());
+
+            board.FloodFill(startRow, startCol);
+
+            Console.WriteLine("\nAfter Flood Fill:");
+            PrintBoard(board);
+        }
+        public static void PrintBoard(Board board)
+        {
+            Console.WriteLine();
+            //Print the comlumn numbers
+            Console.Write("  ");
+            for (int i = 0; i < board.Size; i++)
             {
-                Console.WriteLine("Factorial is not defined for negative numbers.");
+                Console.Write($"{i,2}");
             }
-            // Input is valid
-            else
+            Console.WriteLine();
+            for (int i = 0; i < board.Size; i++)
             {
+                Console.Write($"{i,2}");
 
-                // Recursive approach
-                DateTime recursiveStart = DateTime.Now;
-                    Factorial(number);
-                DateTime recursiveEnd = DateTime.Now;
-
-                // Iterative approach
-                DateTime iterativeStart = DateTime.Now;
-                    IterativeFactorial(number);
-                DateTime iterativeEnd = DateTime.Now;
-
-                // Print results
-                Console.WriteLine($"Recursive Factorial of {number} is: {Factorial(number)}");
-                Console.WriteLine($"Iterative Factorial of {number} is: {IterativeFactorial(number)}");
-
-                Console.WriteLine($"Time taken for {number} iterations of recursion: " +
-                    $"{(recursiveEnd - recursiveStart).TotalMilliseconds} ms");
-                Console.WriteLine($"Time taken for {number} iterations of iteration: " +
-                    $"{(iterativeEnd - iterativeStart).TotalMilliseconds} ms");
-            }
-            // Recursive factorial method
-            static long Factorial(int n)
-            {
-                // Increment step counter
-                stepCounter++;
-                Console.WriteLine("Step {0}: n is {1}", stepCounter, n);
-                // Base case
-                if (n == 0 || n == 1)
-                { return 1; }
-                // Recursive case
-                return n * Factorial(n - 1);
-            }
-            // Iterative factorial method
-            static long IterativeFactorial(int n)
-            {
-                long result = 1;
-                for (int i = 1; i <= n; i++)
+                for (int j = 0; j < board.Size; j++)
                 {
-                    result *= i;
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    if ((board.Grid[i, j].Contents == "W"))
+                    {
+                        Console.BackgroundColor = ConsoleColor.Magenta;
+                        
+                        Console.Write(" X");
+                    }
+                    else if (board.Grid[i, j].Contents == "E")
+                    {
+                        
+                        Console.Write(" ?");
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        
+                        Console.Write(" .");
+                    }
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    
                 }
-                return result;
-
+                Console.WriteLine();
             }
 
         }

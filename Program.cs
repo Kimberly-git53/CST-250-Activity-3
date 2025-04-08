@@ -10,38 +10,47 @@ namespace Factorial
 
         // This program calculates the factorial of a non-negative integer using recursion.
         static void Main(string[] args)
-        {
-            Console.WriteLine("Enter a integer to calculate its factorial:");
-            int number = int.Parse(Console.ReadLine());
+        {   
+            
             stepCounter = 0;
-            // Validate input needs to be a non-negative integer
-            if (number < 0)
-            {
-                Console.WriteLine("Factorial is not defined for negative numbers.");
-            }
-            // Input is valid
-            else
-            {
+           
+            
+                // Validate input needs to be a non-negative integer
+                while (true)
+                {
+                        Console.WriteLine("Enter a integer to calculate its factorial:");
+                        int number = int.Parse(Console.ReadLine());
 
-                // Recursive approach
-                DateTime recursiveStart = DateTime.Now;
+                    // Input is valid
+                     if (number < 0)
+                     {
+                        Console.WriteLine("Factorial is not defined for negative numbers. Please try again.");
+                        number = int.Parse(Console.ReadLine());
+                     }
+                
+               
+
+                    // Recursive approach
+                    DateTime recursiveStart = DateTime.Now;
                     Factorial(number);
-                DateTime recursiveEnd = DateTime.Now;
+                    DateTime recursiveEnd = DateTime.Now;
 
-                // Iterative approach
-                DateTime iterativeStart = DateTime.Now;
+                    // Iterative approach
+                    DateTime iterativeStart = DateTime.Now;
                     IterativeFactorial(number);
-                DateTime iterativeEnd = DateTime.Now;
+                    DateTime iterativeEnd = DateTime.Now;
 
-                // Print results
-                Console.WriteLine($"Recursive Factorial of {number} is: {Factorial(number)}");
-                Console.WriteLine($"Iterative Factorial of {number} is: {IterativeFactorial(number)}");
+                    // Print results
+                    Console.WriteLine($"Recursive Factorial of {number} is: {Factorial(number)}");
+                    Console.WriteLine($"Iterative Factorial of {number} is: {IterativeFactorial(number)}");
 
-                Console.WriteLine($"Time taken for {number} iterations of recursion: " +
-                    $"{(recursiveEnd - recursiveStart).TotalMilliseconds} ms");
-                Console.WriteLine($"Time taken for {number} iterations of iteration: " +
-                    $"{(iterativeEnd - iterativeStart).TotalMilliseconds} ms");
-            }
+                    Console.WriteLine($"Time taken for {number} iterations of recursion: " +
+                        $"{(recursiveEnd - recursiveStart).TotalMilliseconds} ms");
+                    Console.WriteLine($"Time taken for {number} iterations of iteration: " +
+                        $"{(iterativeEnd - iterativeStart).TotalMilliseconds} ms");
+                    
+                }
+            
             // Recursive factorial method
             static long Factorial(int n)
             {

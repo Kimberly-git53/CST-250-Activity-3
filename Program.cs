@@ -80,16 +80,8 @@ namespace GreatestCommonDivisor
             //List<int> divisor1 = FindDivisors(number1);
             //List<int> divisor2 = FindDivisors(number2);
 
-            //List<int> divisors = new List<int>();
-            //for (int i = 1; i <= number; i++)
-            //{
-            //    if (number % i == 0)
-            //    {
-            //        divisors.Add(i);
-            //    }
-            //}
-            //return divisors;
-
+            //List<int> factors = new List<int>();
+            //for (int )
 
 
             // Output divisors
@@ -112,15 +104,18 @@ namespace GreatestCommonDivisor
         // Function to find the GCD using recursion
         private static int GCDRecursive(int number1, int number2)
         {
-            // Check for zero values
-            if (number1 == 0 && number2 == 0)
-                return 0;
+            
             // Base case
             if (number2 == 0)
                 return number1;
+            // Check for zero values
+            else if (number1 == 0 || number2 == 0)
+            {
+                return 0;
+            }
             // Recursive case
             else
-                Console.WriteLine("Not yet. {0} / {1} has a remainder of {2}", number1, number2, number1 % number2);
+                Console.WriteLine("Not yet. {0} / {1} has a remainder of {2}", number1, number2, (number1 % number2));
             return GCDRecursive(number2, number1 % number2);
 
         }
@@ -128,16 +123,21 @@ namespace GreatestCommonDivisor
         // Function to find the GCD of multiple numbers using the iterative method
         private static int MultipleGCD(int number1, int number2)
         {
-            // Check for zero values
             if (number1 == 0 || number2 == 0)
                 return 0;
-            // Base case
+
+            number1 = Math.Abs(number1);
+            number2 = Math.Abs(number2);
+
             while (number2 != 0)
             {
+                
                 int temp = number2;
                 number2 = number1 % number2;
                 number1 = temp;
             }
+
+
             return number1;
         }
 
@@ -170,7 +170,7 @@ namespace GreatestCommonDivisor
         // Greatest Common Divisor function 
         private static int GCD(int number1, int number2)
         {
-            if (number1 == 0 || number2 == 0)
+            if (number1 == 0 && number2 == 0)
                 return 0;
             // Base case
             if (number2 == 0)
